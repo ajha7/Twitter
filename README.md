@@ -23,4 +23,4 @@ The following **bonus** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://g.recordit.co/Pj4f4LCpZM.gif' title='Twitter Walkthrough' width='' alt='Twitter Walkthrough' />
+<img src='http://g.recordit.co/oGUknRrzcF.gif' title='Twitter Walkthrough' width='' alt='Twitter Walkthrough' />
