@@ -10,6 +10,7 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
 
+    
     var tweetArray = [NSDictionary]()
     var numberOfTweets: Int!
     let myRefreshControl = UIRefreshControl()
@@ -20,21 +21,27 @@ class HomeTableViewController: UITableViewController {
         
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 150
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweets()
+    }
+    
     @objc func loadTweets() {
         
         numberOfTweets = 20
         let homeTweetUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let params = ["count": numberOfTweets]
         
-        TwitterAPICaller.client?.getDictionariesRequest(url: homeTweetUrl, parameters: params, success: { (tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: homeTweetUrl, parameters: params as [String : Any], success: { (tweets: [NSDictionary]) in
             
             self.tweetArray.removeAll()
             for tweet in tweets {
                 self.tweetArray.append(tweet)
             }
-
             self.tableView.reloadData()
             self.myRefreshControl.endRefreshing()
         }, failure: { (Error) in
@@ -47,7 +54,7 @@ class HomeTableViewController: UITableViewController {
         let homeTweetUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         numberOfTweets += 20
         let params = ["count": numberOfTweets]
-        TwitterAPICaller.client?.getDictionariesRequest(url: homeTweetUrl, parameters: params, success: { (tweets: [NSDictionary]) in
+        TwitterAPICaller.client?.getDictionariesRequest(url: homeTweetUrl, parameters: params as [String : Any], success: { (tweets: [NSDictionary]) in
             
             self.tweetArray.removeAll()
             for tweet in tweets {
@@ -93,6 +100,18 @@ class HomeTableViewController: UITableViewController {
             cell.profileImageView.image = UIImage(data: imageData)
         }
         
+        cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
+        
+        cell.setTweetId(tweetId: tweetArray[indexPath.row]["id"] as! Int)
+
+        cell.setRetweeted(retweeted: tweetArray[indexPath.row]["retweeted"] as! Bool)
+        
+        if #available(iOS 13.0, *) {
+            cell.timeLabel.text = getRelativeTime(timeString: (tweetArray[indexPath.row]["created_at"] as? String)!)
+        } else {
+            // Fallback on earlier versions
+        }
+        
         return cell
     }
     
@@ -102,9 +121,21 @@ class HomeTableViewController: UITableViewController {
             loadMoreTweets()
         }
     }
-
+    
+    @available(iOS 13.0, *)
+    func getRelativeTime(timeString: String) -> String {
+        let formatter: RelativeDateTimeFormatter;
+        formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy"
+        let tweetDate = dateFormatter.date(from:timeString)
+        let relativeDate = formatter.localizedString(for: tweetDate!, relativeTo: Date())
+        
+        return relativeDate
+    }
     /*
-    // Override to support conditional editing of the table view.
+     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
