@@ -79,7 +79,7 @@
                                                 <constraint firstAttribute="width" constant="88" id="JgH-T9-q73"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwi-Oc-gXU">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jwi-Oc-gXU">
                                             <rect key="frame" x="106" y="0.0" width="69" height="18"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <nil key="textColor"/>
@@ -124,6 +124,7 @@
                                         <constraint firstItem="9X2-Sz-goP" firstAttribute="top" secondItem="Jwi-Oc-gXU" secondAttribute="bottom" constant="8" id="8Ky-CE-ECJ"/>
                                         <constraint firstItem="dgy-EA-Mwl" firstAttribute="top" secondItem="Jwi-Oc-gXU" secondAttribute="top" id="A89-WT-YPw"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Gmh-Sb-AjF" secondAttribute="trailing" constant="10" id="Co7-iM-fuY"/>
+                                        <constraint firstItem="Jwi-Oc-gXU" firstAttribute="leading" secondItem="JFr-To-4s2" secondAttribute="trailing" constant="18" id="Esc-Tw-1Kg"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Gmh-Sb-AjF" secondAttribute="bottom" id="H4M-qx-fmY"/>
                                         <constraint firstItem="JFr-To-4s2" firstAttribute="top" secondItem="JER-yv-kpk" secondAttribute="top" id="K61-P3-q94"/>
                                         <constraint firstItem="Jwi-Oc-gXU" firstAttribute="top" secondItem="JER-yv-kpk" secondAttribute="top" id="LzI-fy-hdm"/>
@@ -132,8 +133,7 @@
                                         <constraint firstAttribute="trailing" secondItem="dgy-EA-Mwl" secondAttribute="trailing" constant="7" id="WmP-j8-SyO"/>
                                         <constraint firstAttribute="bottom" secondItem="JFr-To-4s2" secondAttribute="bottom" constant="23" id="aO9-ri-Z01"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="2l7-D7-caE" secondAttribute="bottom" id="c7V-ZG-Ae4"/>
-                                        <constraint firstItem="dgy-EA-Mwl" firstAttribute="leading" secondItem="Jwi-Oc-gXU" secondAttribute="trailing" constant="170" id="fPm-dj-2xw"/>
-                                        <constraint firstItem="Jwi-Oc-gXU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JFr-To-4s2" secondAttribute="trailing" constant="8" symbolic="YES" id="g82-ge-v4y"/>
+                                        <constraint firstItem="dgy-EA-Mwl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jwi-Oc-gXU" secondAttribute="trailing" constant="8" symbolic="YES" id="hKW-Sg-SbJ"/>
                                         <constraint firstItem="Gmh-Sb-AjF" firstAttribute="top" secondItem="9X2-Sz-goP" secondAttribute="bottom" constant="3" id="hXZ-vI-gS4"/>
                                         <constraint firstItem="Gmh-Sb-AjF" firstAttribute="leading" secondItem="2l7-D7-caE" secondAttribute="trailing" constant="15" id="qke-6i-0iX"/>
                                         <constraint firstItem="JFr-To-4s2" firstAttribute="leading" secondItem="JER-yv-kpk" secondAttribute="leading" id="y0u-Sg-M79"/>
@@ -188,14 +188,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOD-1r-khN">
+                                <rect key="frame" x="318" y="296" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4If-DF-Szi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4If-DF-Szi" firstAttribute="trailing" secondItem="Ljz-gm-o9u" secondAttribute="trailing" id="0L0-pZ-9Ea"/>
                             <constraint firstItem="Ljz-gm-o9u" firstAttribute="leading" secondItem="4If-DF-Szi" secondAttribute="leading" id="5ut-zY-Tcq"/>
+                            <constraint firstItem="4If-DF-Szi" firstAttribute="trailing" secondItem="ZOD-1r-khN" secondAttribute="trailing" id="9bv-jA-Pi0"/>
                             <constraint firstItem="4If-DF-Szi" firstAttribute="bottom" secondItem="Ljz-gm-o9u" secondAttribute="bottom" constant="465" id="FzE-ux-FIo"/>
+                            <constraint firstItem="ZOD-1r-khN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4If-DF-Szi" secondAttribute="leading" symbolic="YES" id="Mi3-ET-3I8"/>
                             <constraint firstItem="Ljz-gm-o9u" firstAttribute="top" secondItem="4If-DF-Szi" secondAttribute="top" id="R1p-DG-uk3"/>
+                            <constraint firstItem="ZOD-1r-khN" firstAttribute="top" secondItem="Ljz-gm-o9u" secondAttribute="bottom" constant="2" id="btx-mK-wz9"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -219,6 +228,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="characterCountLabel" destination="ZOD-1r-khN" id="mN5-E9-3Mm"/>
                         <outlet property="tweetTextView" destination="Ljz-gm-o9u" id="bqT-dI-o8w"/>
                     </connections>
                 </viewController>
