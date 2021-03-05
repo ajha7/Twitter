@@ -49,8 +49,17 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
     }
     
     func getDictionariesRequest(url: String, parameters: [String:Any], success: @escaping ([NSDictionary]) -> (), failure: @escaping (Error) -> ()){
-        print(parameters)
+        //print(parameters)
         TwitterAPICaller.client?.get(url, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success(response as! [NSDictionary])
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func getUserTweetsRequest(url: String, success: @escaping ([NSDictionary]) -> (), failure: @escaping (Error) -> ()){
+        //print(parameters)
+        TwitterAPICaller.client?.get(url, parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
             success(response as! [NSDictionary])
         }, failure: { (task: URLSessionDataTask?, error: Error) in
             failure(error)
@@ -92,6 +101,15 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
     func retweet(tweetId:Int, success: @escaping() -> (), failure:@escaping (Error) -> ()) {
         let url = "https://api.twitter.com/1.1/statuses/retweet/\(tweetId).json"
         TwitterAPICaller.client?.post(url, parameters: ["id":tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in success()
+        }, failure: { (task: URLSessionDataTask?, error:Error) in
+            failure(error)
+        })
+    }
+    
+    func getUserInfo(success: @escaping ([String: Any]) -> (), failure: @escaping (Error) -> ()) {
+        let url = "https://api.twitter.com/1.1/account/verify_credentials.json"
+        TwitterAPICaller.client?.get(url, parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success(response as! [String: Any])
         }, failure: { (task: URLSessionDataTask?, error:Error) in
             failure(error)
         })

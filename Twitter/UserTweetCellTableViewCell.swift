@@ -7,16 +7,15 @@
 //
 
 import UIKit
+class UserTweetCellTableViewCell: UITableViewCell {
 
-class TweetCellTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var profileImageView: UIImageView!
+    
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var tweetContent: UILabel!
     @IBOutlet weak var favButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var embeddedImageView: UIImageView!
     
     var tweetId: Int = -1
     var retweeted:Bool = false
@@ -42,10 +41,10 @@ class TweetCellTableViewCell: UITableViewCell {
             TwitterAPICaller.client?.unfavoriteTweet(tweetId: tweetId, success: {
                 self.setFavorite(false)
             }, failure: { (Error) in
-                print("Unfavorite did not succeed: \(Error)")
-            })
+                print("Unfavorite did not succeed: \(Error)")            })
         }
     }
+
     
     @IBAction func onRetweet(_ sender: Any) {
         TwitterAPICaller.client?.retweet(tweetId: tweetId, success: {
